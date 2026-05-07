@@ -2,18 +2,18 @@ import pygame
 
 # pygame setup
 pygame.init()
-screen = pygame.display.set_mode((800, 258))
+screen = pygame.display.set_mode((800, 240))
 clock = pygame.time.Clock()
 running = True
-bg = pygame.image.load('"C:\Users\zcnguyen\Downloads\supermario  1-1 map.png"')
+
 
 while running:
+    bg = screen.blit(pygame.image.load('mariomap.png').convert_alpha(), (0,0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-
-    screen.fill("black")
+    mario_map = pygame.image.load('mariomap.png').convert_alpha()
 
 
     pygame.display.flip()
