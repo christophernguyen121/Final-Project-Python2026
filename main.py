@@ -11,12 +11,30 @@ p1_speed = 5
 p1_gravity = 6
 p1_x = 25
 p1_y = 510
-p1_jump = 100
+p1_jump = 10
+timer = 0
+jumping = False
 
 pygame.display.set_caption("Mario")
 
 running = True
 while running:
+    def jump():
+        global p1_jump
+        global p1_y
+        global p1_gravity
+        global timer
+        while timer < 45:
+            if timer <= 15:
+                p1_y -= p1_gravity + p1_jump
+                timer += 1
+                if p1_jump >= 2:
+                    p1_jump -= .005
+            elif timer > 15:
+                p1_y += p1_gravity + p1_jump
+                p1_jump += 1
+                timer += 1
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -26,9 +44,11 @@ while running:
         p1_x -= p1_speed
     if keys[pygame.K_RIGHT]:
         p1_x += p1_speed
+    if keys[pygame.K_a]:
+
 
     p1_y += p1_gravity
-    print(p1_x, p1_y)
+    print(timer)
 
 
 
@@ -39,9 +59,15 @@ while running:
     clock.tick(60)
 
     if pygame.Rect.colliderect(p3, p1):
-        p1_y -= p1_gravity
         isGrounded = True
+
     else:
         isGrounded = False
+    if isGrounded:
+        p1_y -= p1_gravity + 0.001
+    if isGrounded:
+        timer = 0
+        p1_jump = 10
+
 
 pygame.quit()
