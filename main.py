@@ -47,7 +47,6 @@ while running:
     #if keys[pygame.K_a]:
 
     p1_y += p1_gravity
-    print(timer)
 
 
 
