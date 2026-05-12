@@ -11,7 +11,7 @@ p1_speed = 5
 p1_gravity = 6
 p1_x = 25
 p1_y = 510
-p1_jump = 10
+p1_jump = 3
 timer = 0
 jumping = False
 
@@ -24,16 +24,21 @@ while running:
         global p1_y
         global p1_gravity
         global timer
-        while timer < 45:
-            if timer <= 15:
+        global isGrounded
+        while timer < 15:
+            isGrounded = False
+            if timer >= 5:
+                if p1_jump >= .2:
+                    p1_jump -= .1
                 p1_y -= p1_gravity + p1_jump
                 timer += 1
-                if p1_jump >= 2:
-                    p1_jump -= .005
-            elif timer > 15:
+            elif timer < 10:
                 p1_y += p1_gravity + p1_jump
                 p1_jump += 1
                 timer += 1
+        if timer >= 15:
+            timer = 0
+            p1_jump = 3
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -44,9 +49,11 @@ while running:
         p1_x -= p1_speed
     if keys[pygame.K_RIGHT]:
         p1_x += p1_speed
-    #if keys[pygame.K_a]:
+    if keys[pygame.K_UP] and isGrounded:
+        jump()
 
     p1_y += p1_gravity
+    print(p1_x, p1_y)
 
 
 
@@ -62,7 +69,7 @@ while running:
     else:
         isGrounded = False
     if isGrounded:
-        p1_y -= p1_gravity + 0.001
+        p1_y -= p1_gravity + 0.0001
     if isGrounded:
         timer = 0
         p1_jump = 10
