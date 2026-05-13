@@ -1,11 +1,9 @@
 import pygame
-
-p1_speed = 7
+bg_scroll = 0
+p1_speed = 20
 p1_gravity = 5
 p1_x = 136
 p1_y = 187
-
-
 
 class Player(pygame.sprite.Sprite):
 
