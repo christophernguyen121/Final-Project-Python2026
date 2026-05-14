@@ -11,8 +11,9 @@ p1_speed = 5
 p1_gravity = 6
 p1_x = 25
 p1_y = 510
-p1_jump = 3
+p1_jump = 50
 timer = 0
+preJump = p1_y
 isJump = False
 
 pygame.display.set_caption("Mario")
@@ -31,10 +32,22 @@ while running:
         p1_x += p1_speed
     if keys[pygame.K_UP] and isGrounded:
         isJump = True
+        preJump = p1_y - 250
     if isJump:
-        p1_y -= p1_gravity + 1
-
-    p1_y += p1_gravity
+        if p1_y > preJump:
+            p1_y -= p1_gravity + p1_jump
+            if p1_jump >= 50:
+                p1_jump -= .5
+        elif p1_y <= preJump:
+            p1_jump = 100
+            preJump = 0
+            isJump = False
+    if not isJump:
+        p1_y += p1_gravity
+        if not isGrounded and p1_gravity <= 25:
+            p1_gravity += .5
+        else:
+            p1_gravity = 6
 
 
 
