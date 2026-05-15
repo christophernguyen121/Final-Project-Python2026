@@ -16,6 +16,7 @@ timer = 0
 preJump = p1_y
 isJump = False
 
+
 pygame.display.set_caption("Mario")
 
 running = True
@@ -53,11 +54,11 @@ while running:
 
     p1 = pygame.draw.rect(screen, (150, 75, 0), pygame.Rect(0, 550, 1000, 50))
     pygame.draw.rect(screen, (140, 60, 0), pygame.Rect(400, 320, 50, 50))
-    p3 = pygame.draw.circle(screen, (150, 60, 0), (p1_x, p1_y), 22,)
+    ground = pygame.draw.circle(screen, (150, 60, 0), (p1_x, p1_y), 22,)
     pygame.display.flip()
     clock.tick(60)
 
-    if pygame.Rect.colliderect(p3, p1):
+    if pygame.Rect.colliderect(ground, p1):
         isGrounded = True
     else:
         isGrounded = False
