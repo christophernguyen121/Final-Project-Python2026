@@ -1,6 +1,14 @@
 import pygame
 
-pygame.init()
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        pygame.sprite.Sprite.__init__(self)
+
+
+
+
+
+        pygame.init()
 
 scroll = 0
 p1_speed = 5
@@ -54,18 +62,10 @@ while running:
     screen.blit(background, (-offset_x, 0))
 
 
-    pygame.draw.rect(
-        screen,
-        (150, 75, 0),
-        pygame.Rect(-offset_x, 200, 2000, 40)
-    )
 
 
-    pygame.draw.rect(
-        screen,
-        (140, 60, 0),
-        pygame.Rect(400 - offset_x, 150, 50, 50)
-    )
+
+
 
     
     pygame.draw.circle(
@@ -79,15 +79,7 @@ while running:
     clock.tick(60)
 
 
-    if pygame.Rect.colliderect(p3, p1):
-        isGrounded = True
-    else:
-        isGrounded = False
-    if isGrounded:
-        p1_y -= p1_gravity
-    if isGrounded:
-        timer = 0
-        p1_jump = 10
+
 
 
 
