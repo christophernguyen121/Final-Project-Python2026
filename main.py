@@ -17,6 +17,18 @@ preJump = p1_y
 isJump = False
 
 
+class Rect:
+    def __init__(self, block_x, block_y, block_height, block_width):
+        self.block_x = block_x
+        self.block_y = block_y
+        self.block_height = block_height
+        self.block_width = block_width
+
+    def draw(self):
+        pygame.draw.rect(screen, (140, 60, 0),
+                         pygame.Rect(self.block_x, self.block_y, self.block_height, self.block_width))
+
+
 pygame.display.set_caption("Mario")
 
 running = True
@@ -50,11 +62,9 @@ while running:
         else:
             p1_gravity = 6
 
-
-
-    p1 = pygame.draw.rect(screen, (150, 75, 0), pygame.Rect(0, 550, 1000, 50))
-    pygame.draw.rect(screen, (140, 60, 0), pygame.Rect(400, 320, 50, 50))
-    ground = pygame.draw.circle(screen, (150, 60, 0), (p1_x, p1_y), 22,)
+    Rect.draw()
+    ground = pygame.draw.rect(screen, (150, 75, 0), pygame.Rect(0, 550, 1000, 50))
+    p1 = pygame.draw.circle(screen, (150, 60, 0), (p1_x, p1_y), 22, )
     pygame.display.flip()
     clock.tick(60)
 
@@ -67,6 +77,5 @@ while running:
     if isGrounded:
         timer = 0
         p1_jump = 10
-
 
 pygame.quit()
